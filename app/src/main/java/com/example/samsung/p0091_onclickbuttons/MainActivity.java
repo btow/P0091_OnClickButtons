@@ -3,9 +3,13 @@ package com.example.samsung.p0091_onclickbuttons;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -33,13 +37,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             public void onClick(View view) {
 
-                try {
-                    //Меняем текст в TextView (tvOut)
-                    int i = 6/0;
-                    tvOout.setText("Результат деления = " + i);
-                } catch (Exception e) {
-                    Log.d(TAG, "Делить на 0 нельзя!", e);
-                }
+                //Меняем текст в TextView (tvOut)
+                tvOout.setText("Нажата кнопка 1");
+
+                Toast toast = Toast.makeText(MainActivity.this, "Нажата кнопка 1", Toast.LENGTH_LONG);
+                LinearLayout toastsImage = (LinearLayout) toast.getView();
+                toastsImage.setOrientation(LinearLayout.HORIZONTAL);
+                ImageView imageView = new ImageView(MainActivity.this);
+                imageView.setImageResource(R.drawable.photo_smol);
+                imageView.setAdjustViewBounds(true);
+                imageView.setMaxWidth(50);
+                toastsImage.addView(imageView, 0);
+                toast.setGravity(Gravity.CENTER, 0, 350);
+                toast.show();
 
             }
         });
